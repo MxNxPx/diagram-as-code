@@ -4,7 +4,8 @@ comment: |md
   - Link: [https://repo1.dso.mil/platform-one/big-bang/customers/template](https://repo1.dso.mil/platform-one/big-bang/customers/template)
   - Built from the template
   - Supports defining multiple environments (ex: prod and dev)
-  - Upon deploying, a Flux Kustomization is created that references the Big Bang Helm Chart Repo
+  - Upon deploying, a Flux GitRepository is created to keep synchronization between the cluster and git
+  - Also on deploying, a Flux Kustomization is created that references the Big Bang Helm Chart Repo
     * Link: [https://repo1.dso.mil/platform-one/big-bang/bigbang](https://repo1.dso.mil/platform-one/big-bang/bigbang)
     * Big Bang Helm Release (umbrella chart of Flux references to components defined in other charts)
       - Creates Flux Custom Resources (CRs)
@@ -22,17 +23,13 @@ comment: |md
                   - Pods will pulls the container images required from the container registry
                   - Now the Big Bang workloads are finally running!
 
-  -
+                    >  ********
+                    >
+                    > **_NOTE:_** The digram represents the sequence of events (not ownership)
+                    > 
+                    >  ********
 
-  -
-
-  -
-
-  -
-
-  - 
-
-  [comment]: <> (Extra space because otherwise it cuts off early)
+                    [comment]: <> (Extra space because otherwise it cuts off early)
   
 |
 # Kubernetes Cluster Components
@@ -115,6 +112,14 @@ k8s: {
       style: {
         fill: '#ace1ac'
         font-size: 20
+      }
+      cust-bb-gr-cr: {
+        label: Customer BigBang GitRepository CR
+        shape: image
+        icon: ./images/flux-gitrepo-logo.svg
+        width: 200
+        height: 200
+        font-size: 10 
       }
       haproxy-gr-cr: {
         label: HAProxy GitRepository CR
@@ -311,6 +316,7 @@ registry: {
 
 # Arrows describing relationships
 gitrepo.cust-repo -> k8s.flux.ks-cr.bb-ks-cr#: 'deploys a ks cr'
+gitrepo.cust-repo <-> k8s.flux.gr-cr.cust-bb-gr-cr#: 'deploys a customer instance of bb gitrepo cr that continues syncing with flux'
 k8s.flux.ks-cr.bb-ks-cr -> gitrepo.bb-repo#: 'ref to bb repo'
 gitrepo.bb-repo -> k8s.helm.bb-hr: 'git repo used for bb helm release'
 k8s.helm.bb-hr -> k8s.flux.hr-cr.haproxy-hr-cr#: 'creates flux haproxy hr cr'
