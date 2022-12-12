@@ -1,20 +1,24 @@
 comment: |md
-## Description of the Flow
+## Big Bang Deployment Flow
 * [Customer Deployment Repo](https://repo1.dso.mil/platform-one/big-bang/customers/template)
   - Built from the template
   - Supports defining multiple environments (ex: prod and dev)
-  - References the Big Bang Helm Chart Repo
-* [Big Bang Repo](https://repo1.dso.mil/platform-one/big-bang/bigbang)
-  - Contains the source for the Umbrella Chart
-  - Contains the source for the Umbrella Chart
-* then that
-* then that
-* then that
-* then that
-* then that
-* then that
-* then that
-* then that
+  - Upon deploying, a Flux Kustomization is created that references the [Big Bang Helm Chart Repo](https://repo1.dso.mil/platform-one/big-bang/bigbang)
+  * Big Bang Helm Release (umbrella chart of Flux references to components defined in other charts)
+    - Creates Flux Custom Resources (CRs)
+      * Flux GitRepository CRs
+        - References git repositories containing each component (ex: HAProxy)
+        - Pulls down a copy of the git repositories into the K8s cluster
+      * Flux HelmRelease CRs
+        - Creates Flux HelmChart CRs that utilizes the code in the GitRepository CRs
+        - Renders the Helm Charts and deploys them as Kubernetes "Helm Releases"
+          * Helm Releases of each Big Bang Component
+            - Applies the Kubernetes resources contained in the rendered Helm Release
+              * ConfigMaps
+              * Services
+              * Starts up Kubernetes Pods as part of the spec (ReplicaSet, DaemonSet, StatefulSet, Deployment)
+                - Pods will pulls the container images required from the container registry
+                - Now the Big Bang workloads are finally running!
 |
 # Kubernetes Cluster Components
 k8s: {
@@ -214,7 +218,7 @@ gitrepo: {
     font-size: 20
   }
   cust-repo: {
-    label: "\nCustomer Chart Repo"
+    label: "Customer Chart Repo"
     shape: image
     icon: https://github.com/MxNxPx/diagram-as-code/raw/main/images/git-original.svg
     width: 200
@@ -222,7 +226,7 @@ gitrepo: {
     font-size: 10
   } 
   bb-repo: {
-    label: "\nBig Bang Umbrella Chart Repo"
+    label: "Big Bang Umbrella Chart Repo"
     shape: image
     icon: https://github.com/MxNxPx/diagram-as-code/raw/main/images/git-original.svg
     width: 200
@@ -230,7 +234,7 @@ gitrepo: {
     font-size: 10
   } 
   logging-repo: {
-    label: "\nLogging Chart Repo"
+    label: "Logging Chart Repo"
     shape: image
     icon: https://github.com/MxNxPx/diagram-as-code/raw/main/images/git-original.svg
     width: 200
@@ -238,7 +242,7 @@ gitrepo: {
     font-size: 10
   } 
   haproxy-repo: {
-    label: "\nHAProxy Chart Repo"
+    label: "HAProxy Chart Repo"
     shape: image
     icon: https://github.com/MxNxPx/diagram-as-code/raw/main/images/git-original.svg
     width: 200
@@ -291,7 +295,8 @@ registry: {
 
 
 # Arrows describing relationships
-gitrepo.cust-repo -> gitrepo.bb-repo: 'reference to bb helm release'
+gitrepo.cust-repo -> k8s.flux.ks-cr.bb-ks-cr#: 'deploys a ks cr'
+k8s.flux.ks-cr.bb-ks-cr -> gitrepo.bb-repo#: 'ref to bb repo'
 gitrepo.bb-repo -> k8s.helm.bb-hr: 'git repo used for bb helm release'
 k8s.helm.bb-hr -> k8s.flux.hr-cr.haproxy-hr-cr#: 'creates flux haproxy hr cr'
 k8s.helm.bb-hr -> k8s.flux.hr-cr.logging-hr-cr#: 'creates flux logging hr cr'
