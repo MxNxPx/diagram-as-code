@@ -1,24 +1,26 @@
 comment: |md
 ## Big Bang Deployment Flow
-* [Customer Deployment Repo](https://repo1.dso.mil/platform-one/big-bang/customers/template)
+* Customer Deployment Repo 
+  - Link: [https://repo1.dso.mil/platform-one/big-bang/customers/template](https://repo1.dso.mil/platform-one/big-bang/customers/template)
   - Built from the template
   - Supports defining multiple environments (ex: prod and dev)
-  - Upon deploying, a Flux Kustomization is created that references the [Big Bang Helm Chart Repo](https://repo1.dso.mil/platform-one/big-bang/bigbang)
-  * Big Bang Helm Release (umbrella chart of Flux references to components defined in other charts)
-    - Creates Flux Custom Resources (CRs)
-      * Flux GitRepository CRs
-        - References git repositories containing each component (ex: HAProxy)
-        - Pulls down a copy of the git repositories into the K8s cluster
-      * Flux HelmRelease CRs
-        - Creates Flux HelmChart CRs that utilizes the code in the GitRepository CRs
-        - Renders the Helm Charts and deploys them as Kubernetes "Helm Releases"
-          * Helm Releases of each Big Bang Component
-            - Applies the Kubernetes resources contained in the rendered Helm Release
-              * ConfigMaps
-              * Services
-              * Starts up Kubernetes Pods as part of the spec (ReplicaSet, DaemonSet, StatefulSet, Deployment)
-                - Pods will pulls the container images required from the container registry
-                - Now the Big Bang workloads are finally running!
+  - Upon deploying, a Flux Kustomization is created that references the Big Bang Helm Chart Repo
+    * Link: [https://repo1.dso.mil/platform-one/big-bang/bigbang](https://repo1.dso.mil/platform-one/big-bang/bigbang)
+    * Big Bang Helm Release (umbrella chart of Flux references to components defined in other charts)
+      - Creates Flux Custom Resources (CRs)
+        * Flux GitRepository CRs
+          - References git repositories containing each component (ex: HAProxy)
+          - Pulls down a copy of the git repositories into the K8s cluster
+        * Flux HelmRelease CRs
+          - Creates Flux HelmChart CRs that utilizes the code in the GitRepository CRs
+          - Renders the Helm Charts and deploys them as Kubernetes "Helm Releases"
+            * Helm Releases of each Big Bang Component
+              - Applies the Kubernetes resources contained in the rendered Helm Release
+                * ConfigMaps
+                * Services
+                * Starts up Kubernetes Pods as part of the spec (ReplicaSet, DaemonSet, StatefulSet, Deployment)
+                  - Pods will pulls the container images required from the container registry
+                  - Now the Big Bang workloads are finally running!
 |
 # Kubernetes Cluster Components
 k8s: {
