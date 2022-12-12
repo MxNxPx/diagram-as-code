@@ -9,8 +9,8 @@ $ d2 --watch input.d2 input.svg
 
 ## how to export resulting diagram
 ```sh
-d2 input.d2 input.png
-d2 input.d2 input.svg
+$ d2 input.d2 input.png
+$ d2 input.d2 input.svg
 ```
 
 ![Big Bang Overview Diagram](./input.svg)
