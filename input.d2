@@ -1,3 +1,21 @@
+comment: |md
+## Description of the Flow
+* [Customer Deployment Repo](https://repo1.dso.mil/platform-one/big-bang/customers/template)
+  - Built from the template
+  - Supports defining multiple environments (ex: prod and dev)
+  - References the Big Bang Helm Chart Repo
+* [Big Bang Repo](https://repo1.dso.mil/platform-one/big-bang/bigbang)
+  - Contains the source for the Umbrella Chart
+  - Contains the source for the Umbrella Chart
+* then that
+* then that
+* then that
+* then that
+* then that
+* then that
+* then that
+* then that
+|
 # Kubernetes Cluster Components
 k8s: {
   label: K8s Cluster
@@ -6,26 +24,26 @@ k8s: {
     stroke-width: 5
     font-size: 20
   }
-  comment: |md
-  ## Description of the Flow
-  * The Big Bang Helm Release will generate Flux Custom Resources (CRs)
-    - Flux GitRepository CRs
-    - Flux HelmRelease CRs
-  * then that
-  * then that
-  * then that
-  * then that
-  * then that
-  * then that
-  * then that
-  * then that
-  * then that
-  |
   flux: {
     label: Flux Components
     style: {
       fill: '#e1d7ac'
       font-size: 20
+    }
+    ks-cr: {
+      label: Kustomization CRs
+      style: {
+        fill: '#ace1ac'
+        font-size: 20
+      }
+      bb-ks-cr: {
+        label: Big Bang Kustomization CR
+        shape: image
+        icon: https://github.com/MxNxPx/diagram-as-code/raw/main/images/flux-kustomization-logo.svg
+        width: 200
+        height: 200
+        font-size: 10 
+      }
     }
     hr-cr: {
       label: HelmRelease CRs
