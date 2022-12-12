@@ -4,59 +4,96 @@ k8s: {
   style: {
     fill: '#acd7e1'
     stroke-width: 5
-    shadow: true
+    font-size: 20
   }
+  comment: |md
+  ## Description of the Flow
+  * The Big Bang Helm Release will generate Flux Custom Resources (CRs)
+    - Flux GitRepository CRs
+    - Flux HelmRelease CRs
+  * then that
+  * then that
+  * then that
+  * then that
+  * then that
+  * then that
+  * then that
+  * then that
+  * then that
+  |
   flux: {
     label: Flux Components
     style: {
       fill: '#e1d7ac'
+      font-size: 20
     }
     hr-cr: {
       label: HelmRelease CRs
       style: {
         fill: '#ace1ac'
+        font-size: 20
       }
       haproxy-hr-cr: {
         label: HAProxy HelmRelease CR
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/flux-helmrelease-logo.svg
+        width: 200
+        height: 200
+        font-size: 10 
       }
       logging-hr-cr: {
         label: Logging HelmRelease CR
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/flux-helmrelease-logo.svg
+        width: 200
+        height: 200
+        font-size: 10 
       }
     }
     hc-cr: {
       label: HelmChart CRs
       style: {
         fill: '#ace1ac'
+        font-size: 20
       }
       haproxy-hc-cr: {
         label: HAProxy HelmChart CR
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/flux-helmchart-logo.svg
+        width: 200
+        height: 200
+        font-size: 10 
       }
       logging-hc-cr: {
         label: Logging HelmChart CR
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/flux-helmchart-logo.svg
+        width: 200
+        height: 200
+        font-size: 10 
       }
     }
     gr-cr: {
       label: GitRepository CRs
       style: {
         fill: '#ace1ac'
+        font-size: 20
       }
       haproxy-gr-cr: {
         label: HAProxy GitRepository CR
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/flux-gitrepo-logo.svg
+        width: 200
+        height: 200
+        font-size: 10 
       }
       logging-gr-cr: {
         label: Logging GitRepository CR
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/flux-gitrepo-logo.svg
+        width: 200
+        height: 200
+        font-size: 10 
       }
     }
   }
@@ -64,68 +101,87 @@ k8s: {
     label: Helm Releases
     style: {
       fill: '#e1d7ac'
+      font-size: 20
     }
     bb-hr: {
       label: Big Bang Helm Release
       shape: image
       icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/helm-release-logo.svg
+      width: 200
+      height: 200
+      font-size: 10 
     }
     logging-hr: {
       label: Logging Helm Release
       shape: image
       icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/helm-release-logo.svg
+      width: 200
+      height: 200
+      font-size: 10 
     }
     haproxy-hr: {
       label: HAProxy Helm Release
       shape: image
       icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/helm-release-logo.svg
+      width: 200
+      height: 200
+      font-size: 10 
     }
   }
   ns: {
     label: Namespaces
     style: {
       fill: '#e1d7ac'
+      font-size: 20
     }
     logging-ns: {
       label: Logging Namespace
       style: {
         fill: '#ace1ac'
+        font-size: 20
       }
       logging-pods: {
         label: Logging Pods
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/pod.svg
+        font-size: 10 
       }
       logging-svcs: {
         label: Logging Services
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/svc.svg
+        font-size: 10
       }
       logging-cms: {
         label: Logging Configmaps
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/cm.svg
+        font-size: 10
       }
     }
     haproxy-ns: {
       label: HAProxy Namespace
       style: {
         fill: '#ace1ac'
+        font-size: 20
       }
       haproxy-pods: {
         label: HAProxy Pods
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/pod.svg
+        font-size: 10
       }
-      haproxy-svcs: {
+      haproxy-svcs: { 
         label: HAProxy Services
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/svc.svg
+        font-size: 10
       }
       haproxy-cms: {
         label: HAProxy Configmaps
         shape: image
         icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/cm.svg
+        font-size: 10
       }
     }
   }
@@ -137,22 +193,39 @@ gitrepo: {
   style: {
     fill: '#acd7e1'
     stroke-width: 5
-    shadow: true
+    font-size: 20
   }
+  cust-repo: {
+    label: "\nCustomer Chart Repo"
+    shape: image
+    icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/git-original.svg
+    width: 200
+    height: 200
+    font-size: 10
+  } 
   bb-repo: {
     label: "\nBig Bang Umbrella Chart Repo"
     shape: image
     icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/git-original.svg
+    width: 200
+    height: 200
+    font-size: 10
   } 
   logging-repo: {
     label: "\nLogging Chart Repo"
     shape: image
     icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/git-original.svg
+    width: 200
+    height: 200
+    font-size: 10
   } 
   haproxy-repo: {
     label: "\nHAProxy Chart Repo"
     shape: image
     icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/git-original.svg
+    width: 200
+    height: 200
+    font-size: 10
   } 
 }
 
@@ -162,52 +235,65 @@ registry: {
   style: {
     fill: '#acd7e1'
     stroke-width: 5
-    shadow: true
+    font-size: 20
   }
   haproxy-image: {
     label: haproxy/haproxy22:v2.2.21
     shape: image
     icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/container-logo.svg
+    width: 200
+    height: 200
+    font-size: 10
   }
   elastic-image: {
     label: elastic/elasticsearch/elasticsearch:8.5.0
     shape: image
     icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/container-logo.svg
+    width: 200
+    height: 200
+    font-size: 10
   }
   kibana-image: {
     label: elastic/kibana/kibana:8.5.0 
     shape: image
     icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/container-logo.svg
+    width: 200
+    height: 200
+    font-size: 10
   }
   loki-image: {
     label: grafana/loki:2.6.1 
     shape: image
     icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/container-logo.svg
+    width: 200
+    height: 200
+    font-size: 10
   }
 }
 
 
 # Arrows describing relationships
+gitrepo.cust-repo -> gitrepo.bb-repo: 'reference to bb helm release'
 gitrepo.bb-repo -> k8s.helm.bb-hr: 'git repo used for bb helm release'
-k8s.helm.bb-hr -> k8s.flux.hr-cr.haproxy-hr-cr: 'bb helm release creates flux haproxy hr cr'
-k8s.helm.bb-hr -> k8s.flux.hr-cr.logging-hr-cr: 'bb helm release creates flux logging hr cr'
-k8s.helm.bb-hr -> k8s.flux.gr-cr.haproxy-gr-cr: 'bb helm release creates flux haproxy gitrepo cr'
-k8s.helm.bb-hr -> k8s.flux.gr-cr.logging-gr-cr: 'bb helm release creates flux logging gitrepo cr'
-k8s.flux.hr-cr.haproxy-hr-cr -> k8s.flux.hc-cr.haproxy-hc-cr: 'flux haproxy hr creates flux haproxy hc'
-k8s.flux.hr-cr.logging-hr-cr -> k8s.flux.hc-cr.logging-hc-cr: 'logging haproxy hr creates flux loging hc'
-k8s.flux.hr-cr.haproxy-hr-cr <-> k8s.flux.gr-cr.haproxy-gr-cr: 'flux haproxy hr pulls flux haproxy gitrepo'
-k8s.flux.hr-cr.logging-hr-cr <-> k8s.flux.gr-cr.logging-gr-cr: 'flux logging hr pulls flux logging gitrepo'
-k8s.flux.gr-cr.haproxy-gr-cr <-> gitrepo.haproxy-repo: 'flux haproxy gitrepo pulls haproxy git repo'
-k8s.flux.gr-cr.logging-gr-cr <-> gitrepo.logging-repo: 'flux logging gitrepo pulls logging git repo'
-k8s.flux.hr-cr.haproxy-hr-cr -> k8s.helm.haproxy-hr: 'flux haproxy hr creates haproxy helm release'
-k8s.flux.hr-cr.logging-hr-cr -> k8s.helm.logging-hr: 'flux logging hr creates logging helm release'
-k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-pods: 'haproxy helm release creates haproxy pods'
-k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-svcs: 'haproxy helm release creates haproxy services'
-k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-cms: 'haproxy helm release creates haproxy configmaps'
-k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-pods: 'logging helm release creates logging pods'
-k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-svcs: 'logging helm release creates loggging services'
-k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-cms: 'logging helm release creates logging configmaps'
-k8s.ns.haproxy-ns.haproxy-pods -> registry.haproxy-image: 'haproxy pods pull haproxy image'
-k8s.ns.logging-ns.logging-pods -> registry.elastic-image: 'logging pods pull elastic image'
-k8s.ns.logging-ns.logging-pods -> registry.kibana-image: 'logging pods pull kibana image'
-k8s.ns.logging-ns.logging-pods -> registry.loki-image: 'logging pods pull loki image'
+k8s.helm.bb-hr -> k8s.flux.hr-cr.haproxy-hr-cr#: 'creates flux haproxy hr cr'
+k8s.helm.bb-hr -> k8s.flux.hr-cr.logging-hr-cr#: 'creates flux logging hr cr'
+k8s.helm.bb-hr -> k8s.flux.gr-cr.haproxy-gr-cr#: 'creates flux haproxy gitrepo cr'
+k8s.helm.bb-hr -> k8s.flux.gr-cr.logging-gr-cr#: 'creates flux logging gitrepo cr'
+k8s.flux.hr-cr.haproxy-hr-cr -> k8s.flux.hc-cr.haproxy-hc-cr: 'creates flux haproxy hc'
+k8s.flux.hr-cr.logging-hr-cr -> k8s.flux.hc-cr.logging-hc-cr: 'creates flux loging hc'
+k8s.flux.hr-cr.haproxy-hr-cr <-> k8s.flux.gr-cr.haproxy-gr-cr: 'proxy hr pulls flux haproxy gitrepo'
+k8s.flux.hr-cr.logging-hr-cr <-> k8s.flux.gr-cr.logging-gr-cr: 'pulls flux logging gitrepo'
+k8s.flux.gr-cr.haproxy-gr-cr <-> gitrepo.haproxy-repo: 'pulls haproxy git repo'
+k8s.flux.gr-cr.logging-gr-cr <-> gitrepo.logging-repo: 'pulls logging git repo'
+k8s.flux.hr-cr.haproxy-hr-cr -> k8s.helm.haproxy-hr#: 'creates haproxy helm release'
+k8s.flux.hr-cr.logging-hr-cr -> k8s.helm.logging-hr#: 'creates logging helm release'
+k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-pods: 'creates haproxy pods'
+k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-svcs: 'creates haproxy services'
+k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-cms: 'creates haproxy configmaps'
+k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-pods: 'creates logging pods'
+k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-svcs: 'creates loggging services'
+k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-cms: 'creates logging configmaps'
+k8s.ns.haproxy-ns.haproxy-pods -> registry.haproxy-image: 'pulls haproxy image'
+k8s.ns.logging-ns.logging-pods -> registry.elastic-image: 'pulls elastic image'
+k8s.ns.logging-ns.logging-pods -> registry.kibana-image: 'pulls kibana image'
+k8s.ns.logging-ns.logging-pods -> registry.loki-image: 'pulls loki image'
