@@ -108,12 +108,18 @@ k8s: {
       }
       haproxy-pods: {
         label: HAProxy Pods
+        shape: image
+        icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/pod.svg
       }
       haproxy-svcs: {
         label: HAProxy Services
+        shape: image
+        icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/svc.svg
       }
       haproxy-cms: {
         label: HAProxy Configmaps
+        shape: image
+        icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/cm.svg
       }
     }
   }
@@ -154,15 +160,23 @@ registry: {
   }
   haproxy-image: {
     label: haproxy/haproxy22:v2.2.21
+    shape: image
+    icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/container-logo.svg
   }
   elastic-image: {
     label: elastic/elasticsearch/elasticsearch:8.5.0
+    shape: image
+    icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/container-logo.svg
   }
   kibana-image: {
     label: elastic/kibana/kibana:8.5.0 
+    shape: image
+    icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/container-logo.svg
   }
   loki-image: {
     label: grafana/loki:2.6.1 
+    shape: image
+    icon: https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/images/container-logo.svg
   }
 }
 
