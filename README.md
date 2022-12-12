@@ -13,4 +13,4 @@ $ d2 input.d2 input.png
 $ d2 input.d2 input.svg
 ```
 
-![Big Bang Overview Diagram](./input.svg)
+![Big Bang Overview Diagram](./input.png)
