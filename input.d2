@@ -4,32 +4,32 @@ comment: |md
   - Link: [https://repo1.dso.mil/platform-one/big-bang/customers/template](https://repo1.dso.mil/platform-one/big-bang/customers/template)
   - Built from the template
   - Supports defining multiple environments (ex: prod and dev)
-  - Upon deploying, a Flux GitRepository is created to keep synchronization between the cluster and git
-  - Also on deploying, a Flux Kustomization is created that references the Big Bang Helm Chart Repo
+  - Upon deploying, a Flux GitRepository **[1]** is created to keep synchronization between the cluster and git
+  - Also on deploying, a Flux Kustomization **[1]** is created that references the Big Bang Helm Chart Repo
     * Link: [https://repo1.dso.mil/platform-one/big-bang/bigbang](https://repo1.dso.mil/platform-one/big-bang/bigbang)
     * Big Bang Helm Release (umbrella chart of Flux references to components defined in other charts)
-      - Creates Flux Custom Resources (CRs)
-        * Flux GitRepository CRs
-          - References git repositories containing each component (ex: HAProxy)
+      - The Flux Kustomization points to the Big Bang Git Repo **[2]** which contains a Helm Release **[3]** with definitions for Flux Custom Resources (CRs)
+        * Flux GitRepository CRs **[4]**
+          - References git repositories **[5]** containing each component (ex: HAProxy)
           - Pulls down a copy of the git repositories into the K8s cluster
-        * Flux HelmRelease CRs
-          - Creates Flux HelmChart CRs that utilizes the code in the GitRepository CRs
-          - Renders the Helm Charts and deploys them as Kubernetes "Helm Releases"
+        * Flux HelmRelease CRs **[6]**
+          - Utilizes the code in the GitRepository CRs **[7]** to creates Flux HelmChart CRs **[8]**
+          - Renders the Helm Charts and deploys them as Kubernetes "Helm Releases" **[9]**
             * Helm Releases of each Big Bang Component
-              - Applies the Kubernetes resources contained in the rendered Helm Release
+              - Applies the Kubernetes resources contained in the rendered Helm Release **[10]**
                 * ConfigMaps
                 * Services
                 * Starts up Kubernetes Pods as part of the spec (ReplicaSet, DaemonSet, StatefulSet, Deployment)
-                  - Pods will pulls the container images required from the container registry
+                  - Pods will pulls the container images **[11]** required from the container registry
                   - Now the Big Bang workloads are finally running!
 
                     >  ********
                     >
-                    > **_NOTE:_** The digram represents the sequence of events (not ownership)
+                    > **_NOTE:_** The digram represents the sequence of events (not ownership), and only the HAProxy and Logging Big Bang components are depicted in this diagram for brevity
                     > 
                     >  ********
 
-                    [comment]: <> (Extra space because otherwise it cuts off early)
+                    [comment]: <> (The comment and extra space is here because otherwise it cuts off early)
   
 |
 # Kubernetes Cluster Components
@@ -315,29 +315,29 @@ registry: {
 
 
 # Arrows describing relationships
-gitrepo.cust-repo -> k8s.flux.ks-cr.bb-ks-cr#: 'deploys a ks cr'
-gitrepo.cust-repo <-> k8s.flux.gr-cr.cust-bb-gr-cr#: 'deploys a customer instance of bb gitrepo cr that continues syncing with flux'
-k8s.flux.ks-cr.bb-ks-cr -> gitrepo.bb-repo#: 'ref to bb repo'
-gitrepo.bb-repo -> k8s.helm.bb-hr: 'git repo used for bb helm release'
-k8s.helm.bb-hr -> k8s.flux.hr-cr.haproxy-hr-cr#: 'creates flux haproxy hr cr'
-k8s.helm.bb-hr -> k8s.flux.hr-cr.logging-hr-cr#: 'creates flux logging hr cr'
-k8s.helm.bb-hr -> k8s.flux.gr-cr.haproxy-gr-cr#: 'creates flux haproxy gitrepo cr'
-k8s.helm.bb-hr -> k8s.flux.gr-cr.logging-gr-cr#: 'creates flux logging gitrepo cr'
-k8s.flux.hr-cr.haproxy-hr-cr -> k8s.flux.hc-cr.haproxy-hc-cr: 'creates flux haproxy hc'
-k8s.flux.hr-cr.logging-hr-cr -> k8s.flux.hc-cr.logging-hc-cr: 'creates flux loging hc'
-k8s.flux.hr-cr.haproxy-hr-cr <-> k8s.flux.gr-cr.haproxy-gr-cr: 'proxy hr pulls flux haproxy gitrepo'
-k8s.flux.hr-cr.logging-hr-cr <-> k8s.flux.gr-cr.logging-gr-cr: 'pulls flux logging gitrepo'
-k8s.flux.gr-cr.haproxy-gr-cr <-> gitrepo.haproxy-repo: 'pulls haproxy git repo'
-k8s.flux.gr-cr.logging-gr-cr <-> gitrepo.logging-repo: 'pulls logging git repo'
-k8s.flux.hr-cr.haproxy-hr-cr -> k8s.helm.haproxy-hr#: 'creates haproxy helm release'
-k8s.flux.hr-cr.logging-hr-cr -> k8s.helm.logging-hr#: 'creates logging helm release'
-k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-pods: 'creates haproxy pods'
-k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-svcs: 'creates haproxy services'
-k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-cms: 'creates haproxy configmaps'
-k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-pods: 'creates logging pods'
-k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-svcs: 'creates loggging services'
-k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-cms: 'creates logging configmaps'
-k8s.ns.haproxy-ns.haproxy-pods -> registry.haproxy-image: 'pulls haproxy image'
-k8s.ns.logging-ns.logging-pods -> registry.elastic-image: 'pulls elastic image'
-k8s.ns.logging-ns.logging-pods -> registry.kibana-image: 'pulls kibana image'
-k8s.ns.logging-ns.logging-pods -> registry.loki-image: 'pulls loki image'
+gitrepo.cust-repo -> k8s.flux.ks-cr.bb-ks-cr: '[1] deploys a ks cr'
+gitrepo.cust-repo <-> k8s.flux.gr-cr.cust-bb-gr-cr: '[1] deploys a gitrepo cr that continues syncing with flux'
+k8s.flux.ks-cr.bb-ks-cr -> gitrepo.bb-repo: '[2] ref to big bang repo'
+gitrepo.bb-repo -> k8s.helm.bb-hr: '[3] git repo defines a big bang helm release'
+k8s.helm.bb-hr -> k8s.flux.gr-cr.haproxy-gr-cr: '[4]' #creates flux haproxy gitrepo cr
+k8s.helm.bb-hr -> k8s.flux.gr-cr.logging-gr-cr: '[4]' #creates flux logging gitrepo cr
+k8s.flux.gr-cr.haproxy-gr-cr <-> gitrepo.haproxy-repo: '[5] pulls haproxy git repo'
+k8s.flux.gr-cr.logging-gr-cr <-> gitrepo.logging-repo: '[5] pulls logging git repo'
+k8s.helm.bb-hr -> k8s.flux.hr-cr.haproxy-hr-cr: '[6]' #creates flux haproxy hr cr
+k8s.helm.bb-hr -> k8s.flux.hr-cr.logging-hr-cr: '[6]' #creates flux logging hr cr
+k8s.flux.hr-cr.haproxy-hr-cr <-> k8s.flux.gr-cr.haproxy-gr-cr: '[7]' #pulls flux haproxy gitrepo
+k8s.flux.hr-cr.logging-hr-cr <-> k8s.flux.gr-cr.logging-gr-cr: '[7]' #pulls flux logging gitrepo
+k8s.flux.hr-cr.haproxy-hr-cr -> k8s.flux.hc-cr.haproxy-hc-cr: '[8] creates flux haproxy hc'
+k8s.flux.hr-cr.logging-hr-cr -> k8s.flux.hc-cr.logging-hc-cr: '[8] creates flux logging hc'
+k8s.flux.hr-cr.haproxy-hr-cr -> k8s.helm.haproxy-hr: '[9]' #creates haproxy helm release
+k8s.flux.hr-cr.logging-hr-cr -> k8s.helm.logging-hr: '[9]' #creates logging helm release
+k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-pods: '[10] creates haproxy pods'
+k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-svcs: '[10] creates haproxy services'
+k8s.helm.haproxy-hr -> k8s.ns.haproxy-ns.haproxy-cms: '[10] creates haproxy configmaps'
+k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-pods: '[10] creates logging pods'
+k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-svcs: '[10] creates loggging services'
+k8s.helm.logging-hr -> k8s.ns.logging-ns.logging-cms: '[10] creates logging configmaps'
+k8s.ns.haproxy-ns.haproxy-pods -> registry.haproxy-image: '[11] pulls haproxy image'
+k8s.ns.logging-ns.logging-pods -> registry.elastic-image: '[11] pulls elastic image'
+k8s.ns.logging-ns.logging-pods -> registry.kibana-image: '[11] pulls kibana image'
+k8s.ns.logging-ns.logging-pods -> registry.loki-image: '[11] pulls loki image'
