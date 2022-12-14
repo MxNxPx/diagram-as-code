@@ -3,6 +3,50 @@ comment: |md
 See [Description](./DESCRIPTION.md) for details on the flow
   
 |
+
+
+# Git Repository Components (repo1)
+gitrepo: {
+  label: Git Code Repository
+  style: {
+    fill: '#acd7e1'
+    stroke-width: 5
+    font-size: 20
+  }
+  cust-repo: {
+    label: "Customer Chart Repo"
+    shape: image
+    icon: images/git-original.png
+    width: 200
+    height: 200
+    font-size: 10
+  } 
+  bb-repo: {
+    label: "Big Bang Umbrella Chart Repo"
+    shape: image
+    icon: images/git-original.png
+    width: 200
+    height: 200
+    font-size: 10
+  } 
+  logging-repo: {
+    label: "Logging Chart Repo"
+    shape: image
+    icon: images/git-original.png
+    width: 200
+    height: 200
+    font-size: 10
+  } 
+  haproxy-repo: {
+    label: "HAProxy Chart Repo"
+    shape: image
+    icon: images/git-original.png
+    width: 200
+    height: 200
+    font-size: 10
+  } 
+}
+
 # Kubernetes Cluster Components
 k8s: {
   label: K8s Cluster
@@ -216,48 +260,6 @@ k8s: {
   }
 }
 
-# Git Repository Components (repo1)
-gitrepo: {
-  label: Git Code Repository
-  style: {
-    fill: '#acd7e1'
-    stroke-width: 5
-    font-size: 20
-  }
-  cust-repo: {
-    label: "Customer Chart Repo"
-    shape: image
-    icon: images/git-original.svg
-    width: 200
-    height: 200
-    font-size: 10
-  } 
-  bb-repo: {
-    label: "Big Bang Umbrella Chart Repo"
-    shape: image
-    icon: images/git-original.svg
-    width: 200
-    height: 200
-    font-size: 10
-  } 
-  logging-repo: {
-    label: "Logging Chart Repo"
-    shape: image
-    icon: images/git-original.svg
-    width: 200
-    height: 200
-    font-size: 10
-  } 
-  haproxy-repo: {
-    label: "HAProxy Chart Repo"
-    shape: image
-    icon: images/git-original.svg
-    width: 200
-    height: 200
-    font-size: 10
-  } 
-}
-
 # Container Registry Components (registry11)
 registry: {
   label: Container Registry
@@ -302,12 +304,12 @@ registry: {
 
 
 # Arrows describing relationships
-gitrepo.cust-repo <-> k8s.flux.gr-cr.cust-bb-gr-cr: '[1a] creates a gitrepo cr'
-gitrepo.cust-repo -> k8s.flux.ks-cr.bb-ks-cr: '[1b] creates a ks cr'
-k8s.flux.ks-cr.bb-ks-cr <-> k8s.flux.gr-cr.cust-bb-gr-cr: '[1c] reconciles thru to repo'
-k8s.flux.ks-cr.bb-ks-cr -> k8s.flux.gr-cr.bb-gr-cr: '[2a] creates flux big bang gitrepo'
-k8s.flux.gr-cr.bb-gr-cr <-> gitrepo.bb-repo: '[2b] reconciles repo'
-k8s.flux.ks-cr.bb-ks-cr -> k8s.flux.hr-cr.bb-hr-cr: '[2c] creates flux big bang hr cr'
+gitrepo.cust-repo <-> k8s.flux.gr-cr.cust-bb-gr-cr: '[1a]'
+k8s.flux.gr-cr.bb-gr-cr <-> gitrepo.bb-repo: '[1b]'
+gitrepo.cust-repo -> k8s.flux.ks-cr.bb-ks-cr: '[1b]'
+gitrepo.cust-repo <-> k8s.flux.gr-cr.cust-bb-gr-cr: '[1c]'
+gitrepo.cust-repo -> k8s.flux.gr-cr.bb-gr-cr: '[1d]'
+gitrepo.cust-repo -> k8s.flux.hr-cr.bb-hr-cr: '[1f]'
 k8s.flux.hr-cr.bb-hr-cr <-> k8s.flux.gr-cr.bb-gr-cr: '[2d] reconciles thru to repo'
 k8s.flux.hr-cr.bb-hr-cr -> k8s.helm.bb-hr: '[3] creates a big bang helm release'
 k8s.helm.bb-hr -> k8s.flux.gr-cr.haproxy-gr-cr: '[4]' #creates flux haproxy gitrepo cr
