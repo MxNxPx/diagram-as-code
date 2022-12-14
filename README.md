@@ -4,13 +4,13 @@
 * get d2 cli
 * run the following command while editing for diagram preview
 ```sh
-$ d2 --watch input.d2 input.svg
+$ d2 --watch bigbang.d2 bigbang.svg
 ```
 
 ## how to export resulting diagram
 ```sh
-$ d2 input.d2 input.png
-$ d2 input.d2 input.svg
+$ d2 bigbang.d2 bigbang.png
+$ d2 bigbang.d2 bigbang.svg
 ```
 
 ![Big Bang Overview Diagram](./bigbang.png)
