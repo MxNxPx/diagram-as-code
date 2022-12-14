@@ -14,3 +14,4 @@ $ d2 input.d2 input.svg
 ```
 
 ![Big Bang Overview Diagram](./input.png)
+[Big Bang Overview Description](./DESCRIPTION.md)
