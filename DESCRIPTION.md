@@ -1,7 +1,7 @@
 # Big Bang Deployment Flow
 
 > ************
-> **_NOTE:_** The digram represents the sequence of events (not ownership), and only the HAProxy and Logging Big Bang components are depicted in this diagram for brevity
+> **_NOTE:_** The digram represents the sequence of events when deploying Big Bang, and only the HAProxy and Logging Big Bang components are depicted in this diagram for brevity
 > ************
 
 ## Customer Big Bang Deployment Repo (built from template)
