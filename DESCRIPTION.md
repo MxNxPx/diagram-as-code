@@ -1,5 +1,9 @@
 # Big Bang Deployment Flow
 
+> ************
+> **_NOTE:_** The digram represents the sequence of events (not ownership), and only the HAProxy and Logging Big Bang components are depicted in this diagram for brevity
+> ************
+
 ## Customer Big Bang Deployment Repo (built from template)
 
 * Link: [https://repo1.dso.mil/platform-one/big-bang/customers/template](https://repo1.dso.mil/platform-one/big-bang/customers/template)
@@ -56,7 +60,3 @@
 
 * Pods defined in the Helm Releases will pulls the container images **[7]** required from the container registry
 * Now the Big Bang workloads are finally running!
-
-> ************
-> **_NOTE:_** The digram represents the sequence of events (not ownership), and only the HAProxy and Logging Big Bang components are depicted in this diagram for brevity
-> ************
