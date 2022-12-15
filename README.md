@@ -13,5 +13,6 @@ $ d2 bigbang.d2 bigbang.png
 $ d2 bigbang.d2 bigbang.svg
 ```
 
+## diagram
 ![Big Bang Overview Diagram](./bigbang.png)
 [Big Bang Overview Description](./DESCRIPTION.md)
