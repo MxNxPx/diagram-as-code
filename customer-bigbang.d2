@@ -1,0 +1,235 @@
+comment: |md
+## Big Bang Deployment Flow
+See [Description](./DESCRIPTION.md) for details on the flow
+  
+|
+
+
+# Git Repository Components (repo1)
+gitrepo: {
+  label: Git Code Repository
+  style: {
+    fill: '#acd7e1'
+    stroke-width: 5
+    font-size: 20
+  }
+  cust-repo: {
+    label: "Customer Repo"
+    style: {
+      fill: '#e1d7ac'
+      font-size: 20
+    }
+    cust-env: {
+      label: "Customer Environment"
+      style: {
+        fill: '#e1d7ac'
+        font-size: 20
+      }
+      kust-over: {
+        label: "Kustomize Overlays (per env)"
+        style: {
+          fill: '#e1d7ac'
+          font-size: 20
+        }
+          bb-gr-cr: {
+            label: "Big Bang Flux GitRepository CR"
+            shape: image
+            icon: images/git-folder.png
+            width: 200
+            height: 200
+            font-size: 10
+            link: 'https://repo1.dso.mil/platform-one/big-bang/customers/template/-/blob/main/dev/bigbang.yaml'
+           }
+          bb-hr-cr: {
+            label: "Big Bang Flux HelmRelease CR"
+            shape: image
+            icon: images/git-folder.png
+            width: 200
+            height: 200
+            font-size: 10
+            link: 'https://repo1.dso.mil/platform-one/big-bang/customers/template/-/blob/main/dev/bigbang.yaml'
+          }
+      }
+      cust-bb-gr-cr: {
+        label: "Customer Big Bang Flux GitRepository CR"
+        shape: image
+        icon: images/git-folder.png
+        width: 200
+        height: 200
+        font-size: 10
+      }
+      cust-bb-ks-cr: {
+        label: "Customer Big Bang Flux Kustomization CR"
+        shape: image
+        icon: images/git-folder.png
+        width: 200
+        height: 200
+        font-size: 10
+      }
+      kust-result: {
+        label: "Kustomize Results (not a real repo)"
+        style: {
+          fill: '#a89732'
+          font-size: 20
+        }
+        bb-gr-cr: {
+          label: "Kustomize Big Bang Flux GitRepository CR"
+          shape: image
+          icon: images/git-kustomize-folder.png
+          width: 200
+          height: 200
+          font-size: 10
+        }
+        bb-hr-cr: {
+          label: "Kustomize Big Bang Flux HelmRelease CR"
+          shape: image
+          icon: images/git-kustomize-folder.png
+          width: 200
+          height: 200
+          font-size: 10
+        }
+      }
+    }
+  } 
+
+  bb-repo: {
+    label: "Big Bang Repo"
+    style: {
+      fill: '#e1d7ac'
+      font-size: 20
+    }
+    kust-base: {
+      label: "Kustomize Base"
+      style: {
+        fill: '#e1d7ac'
+        font-size: 20
+      }
+      bb-gr-cr: {
+        label: "Big Bang Flux GitRepository CR"
+        shape: image
+        icon: images/git-folder.png
+        width: 200
+        height: 200
+        font-size: 10
+      }
+      bb-hr-cr: {
+        label: "Big Bang Flux HelmRelease CR"
+        shape: image
+        icon: images/git-folder.png
+        width: 200
+        height: 200
+        font-size: 10
+      }
+    }
+    bb-umb: {
+      label: "Big Bang Umbrella"
+      style: {
+        fill: '#e1d7ac'
+        font-size: 20
+      }
+      bb-haproxy-gr-cr: {
+        label: "Big Bang HAProxy GitRepository CR"
+        shape: image
+        icon: images/git-folder.png
+        width: 200
+        height: 200
+        font-size: 10
+      }
+      bb-haproxy-hr-cr: {
+        label: "Big Bang HAProxy HelmRelease CR"
+        shape: image
+        icon: images/git-folder.png
+        width: 200
+        height: 200
+        font-size: 10
+      }
+      bb-logging-gr-cr: {
+        label: "Big Bang Logging GitRepository CR"
+        shape: image
+        icon: images/git-folder.png
+        width: 200
+        height: 200
+        font-size: 10
+      }
+      bb-logging-hr-cr: {
+        label: "Big Bang Logging HelmRelease CR"
+        shape: image
+        icon: images/git-folder.png
+        width: 200
+        height: 200
+        font-size: 10
+      }
+    }
+  } 
+
+  logging-repo: {
+    label: "Logging Chart Repo"
+    style: {
+      fill: '#e1d7ac'
+      font-size: 20
+    }
+    elastic-chart {
+      shape: image
+      icon: images/git-folder.png
+      width: 200
+      height: 200
+      font-size: 10
+    }
+    kibana-chart {
+      shape: image
+      icon: images/git-folder.png
+      width: 200
+      height: 200
+      font-size: 10
+    }
+    loki-chart {
+      shape: image
+      icon: images/git-folder.png
+      width: 200
+      height: 200
+      font-size: 10
+    }
+  } 
+
+  haproxy-repo: {
+    label: "HAProxy Chart Repo"
+    style: {
+      fill: '#e1d7ac'
+      font-size: 20
+    }
+    haproxy-chart {
+      shape: image
+      icon: images/git-folder.png
+      width: 200
+      height: 200
+      font-size: 10
+    }
+  } 
+}
+
+# Kubernetes Cluster Components
+k8s: {
+  label: K8s Cluster
+  style: {
+    fill: '#acd7e1'
+    stroke-width: 5
+    font-size: 20
+  }
+  bb-inst: {
+    label: "Big Bang Instance"
+    shape: image
+    icon: images/flux-all-logo.png
+    width: 200
+    height: 200
+    font-size: 10
+    link: 'https://github.com/MxNxPx/diagram-as-code/blob/main/bigbang.svg'
+   }
+}
+
+
+
+# Arrows describing relationships
+gitrepo.bb-repo.kust-base.bb-gr-cr -> gitrepo.cust-repo.cust-env.kust-over.bb-gr-cr -> gitrepo.cust-repo.cust-env.kust-result.bb-gr-cr: '[1a]' #kustomize
+gitrepo.bb-repo.kust-base.bb-hr-cr ->gitrepo.cust-repo.cust-env.kust-over.bb-hr-cr -> gitrepo.cust-repo.cust-env.kust-result.bb-hr-cr: '[1a]' #kustomize
+gitrepo.cust-repo.cust-env.kust-result.bb-hr-cr -> k8s.bb-inst: '[1b]' #creates bb flux hr cr
+gitrepo.cust-repo.cust-env.kust-result.bb-gr-cr -> k8s.bb-inst: '[1c]' #creates bb flux gr cr
