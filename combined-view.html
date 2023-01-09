@@ -1,8 +1,14 @@
+<script>
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
+</script>
+
 <div class="box">
-    <iframe src="https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/customer-bigbang.svg?sanitize=true" frameborder="0" scrolling="yes" width="24%" height="768" align="left"> </iframe>
+    <iframe src="https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/customer-bigbang.svg?sanitize=true" frameborder="0" scrolling="yes" width="24%" height="768" align="left" onload="resizeIframe(this)"> </iframe>
   </div>
   
   <div class="box">
-    <iframe src="https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/bigbang.svg?sanitize=true" frameborder="0" scrolling="yes" width="24%" height="768" align="right"></iframe>
+    <iframe src="https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/bigbang.svg?sanitize=true" frameborder="0" scrolling="yes" width="24%" height="768" align="right" onload="resizeIframe(this)"></iframe>
   </div>
   
