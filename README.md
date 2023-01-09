@@ -17,8 +17,7 @@ $ d2 customer-bigbang.d2 customer-bigbang.png
 ```
 
 ## diagram
-[![Customer View](./bigbang.svg)](https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/customer-bigbang.svg?sanitize=true "Redirect to diagram")
-[![Kubernetes View](./customer-bigbang.svg)](https://raw.githubusercontent.com/MxNxPx/diagram-as-code/main/bigbang.svg?sanitize=true "Redirect to diagram")
+[![Customer View](./bigbang.svg)](https://cdn.jsdelivr.net/gh/MxNxPx/diagram-as-code@main/customer-bigbang.svg "Redirect to diagram")
+[![Kubernetes View](./customer-bigbang.svg)](https://cdn.jsdelivr.net/gh/MxNxPx/diagram-as-code@main/bigbang.svg "Redirect to diagram")
 
-![Big Bang Overview Diagram](./customer-bigbang.png)
 [Big Bang Overview Description](./DESCRIPTION.md)
