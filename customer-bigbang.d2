@@ -111,6 +111,7 @@ gitrepo: {
         width: 200
         height: 200
         font-size: 10
+        link: 'https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/master/base/gitrepository.yaml'
       }
       bb-hr-cr: {
         label: "Big Bang Flux HelmRelease CR"
@@ -119,6 +120,7 @@ gitrepo: {
         width: 200
         height: 200
         font-size: 10
+        link: 'https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/master/base/helmrelease.yaml'
       }
     }
     bb-umb: {
@@ -127,51 +129,41 @@ gitrepo: {
         fill: '#e1d7ac'
         font-size: 20
       }
-      bb-logging-gr-cr: {
-        label: "Big Bang Logging GitRepository CR"
+      bb-ms-gr-cr: {
+        label: "Big Bang Metrics-Server GitRepository CR"
         shape: image
         icon: images/git-folder.svg
         width: 200
         height: 200
         font-size: 10
+        link: 'https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/master/chart/templates/metrics-server/gitrepository.yaml'
       }
-      bb-logging-hr-cr: {
-        label: "Big Bang Logging HelmRelease CR"
+      bb-ms-hr-cr: {
+        label: "Big Bang Metrics-Server HelmRelease CR"
         shape: image
         icon: images/git-folder.svg
         width: 200
         height: 200
         font-size: 10
+        link: 'https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/master/chart/templates/metrics-server/helmrelease.yaml'
       }
     }
   } 
 
-  logging-repo: {
-    label: "Logging Chart Repo"
+  ms-repo: {
+    label: "Metrics-Server Chart Repo"
     style: {
       fill: '#e1d7ac'
       font-size: 20
     }
-    elastic-chart {
+    ms-chart {
+      label: "Metrics-Server Chart"
       shape: image
       icon: images/git-folder.svg
       width: 200
       height: 200
       font-size: 10
-    }
-    kibana-chart {
-      shape: image
-      icon: images/git-folder.svg
-      width: 200
-      height: 200
-      font-size: 10
-    }
-    loki-chart {
-      shape: image
-      icon: images/git-folder.svg
-      width: 200
-      height: 200
-      font-size: 10
+      link: 'https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/metrics-server/-/tree/main/chart'
     }
   } 
 }
