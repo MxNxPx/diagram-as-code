@@ -1,7 +1,7 @@
 # Big Bang Deployment Flow
 
 > ************
-> **_NOTE:_** The digram represents the sequence of events when deploying Big Bang, and only the HAProxy and Logging Big Bang components are depicted in this diagram for brevity
+> **_NOTE:_** The digram represents the sequence of events when deploying Big Bang, and only the Metrics-Server Big Bang component is depicted in this diagram for brevity
 > ************
 
 ## Customer Big Bang Deployment Repo (built from template)
@@ -13,14 +13,14 @@
 
 * Supports defining multiple environments (ex: prod and dev) through the use of Kustomize
 * From within the Customer Repo the Kustomize "base" is defined with a remote reference to the Big Bang Repo - [https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/master/base/kustomization.yaml](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/master/base/kustomization.yaml)
-* The Customer Repo defines a Kustomize "overlay" for each specific customer environment (ex: prod) - [https://repo1.dso.mil/platform-one/big-bang/customers/template/-/blob/main/prod/kustomization.yaml](https://repo1.dso.mil/platform-one/big-bang/customers/template/-/blob/main/prod/kustomization.yaml)
+* The Customer Repo defines a Kustomize "overlay" for each specific customer environment (ex: dev) - [https://repo1.dso.mil/platform-one/big-bang/customers/template/-/blob/main/dev/kustomization.yaml](https://repo1.dso.mil/platform-one/big-bang/customers/template/-/blob/main/dev/kustomization.yaml)
 * The Kustomize "base" is merged with the "overlay" for an environment **[1a]**
 * The resulting rendered Kustomize base+overlay is used to create the Big Bang Flux HelmRelease CR **[1b]** as well as the Big Bang Flux GitRepository CR **[1c]**
 * The Big Bang Flux HelmRelease CR uses the Big Bang Flux GitRepository CR as a source **[1d]** which is kept in sync with the Big Bang git repo **[1e]**
 
 ## **[2]** Additional Flux Custom Resources (CRs) created by the Customer Big Bang Deployment Repo
 
-* Link: [https://repo1.dso.mil/platform-one/big-bang/customers/template/-/blob/main/prod/bigbang.yaml](https://repo1.dso.mil/platform-one/big-bang/customers/template/-/blob/main/prod/bigbang.yaml)
+* Link: [https://repo1.dso.mil/platform-one/big-bang/customers/template/-/blob/main/dev/bigbang.yaml](https://repo1.dso.mil/platform-one/big-bang/customers/template/-/blob/main/dev/bigbang.yaml)
 * Per the repo definition, it creates a Flux Customer Big Bang Kustomization CR **[2a]**
 * Also it creates a Flux Customer Big Bang GitRepository CR **[2b]**
 * The Flux Customer Big Bang Kustomization uses the Flux Customer Big Bang GitRepository as a source **[2c]** that keeps in sync with the repo **[2d]**
@@ -38,10 +38,10 @@
 ## **[4]** Big Bang Helm Release which orchestrates installation of the Big Bang components
 
 * Link: [https://repo1.dso.mil/platform-one/big-bang/bigbang/-/tree/master/chart](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/tree/master/chart)
-* The Big Bang Helm Release is umbrella chart of Flux references to components (ex: HAProxy, Logging, etc) defined in other charts
+* The Big Bang Helm Release is umbrella chart of Flux references to components (ex: Metrics-Server) defined in other charts
 * This Helm Release will create the following Flux CRs for each component
   * Flux HelmRelease CRs **[4a]**
-  * Flux GitRepository CRs **[4b]** that reference git repositories **[4c]** containing each component (ex: HAProxy)
+  * Flux GitRepository CRs **[4b]** that reference git repositories **[4c]** containing each component (ex: Metrics-Server)
 * The Flux HelmRelease CRs utilize the Flux GitRepository CRs as a source **[4d]** to create Flux HelmChart CRs **[4e]**
 
 ## **[5]** Big Bang Component Helm Releases
